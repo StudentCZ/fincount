@@ -45,6 +45,15 @@ function App({ signOut }) {
     event.target.reset();
   }
 
+  async function deleteNote({ id }) {
+    const newNotes = notes.filter((note) => note.id !== id);
+    setNotes(newNotes);
+    await API.graphql({
+      query: deleteNoteMutation,
+      variables: { input: { id } },
+    });
+  }
+
   return (
     <View className='App'>
       <Card>
