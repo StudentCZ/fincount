@@ -23,6 +23,13 @@ function App({ signOut }) {
   useEffect(() => {
     fetchNotes();
   }, []);
+
+  async function fetchNotes() {
+    const apiData = await API.graphql({ query: listNotes });
+    const notesFromAPI = apiData.data.listNotes.items;
+    setNotes(notesFromAPI);
+  }
+
   return (
     <View className='App'>
       <Card>
