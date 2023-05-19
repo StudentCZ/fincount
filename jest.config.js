@@ -1,4 +1,4 @@
 module.exports = {
-  preset: 'jest-preset-react',
+  preset: 'ts-jest',
   testEnvironment: 'jsdom',
 };
