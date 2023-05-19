@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import './App.css';
 import '@aws-amplify/ui-react/styles.css';
 import { API } from 'aws-amplify';
 import {
@@ -11,13 +11,13 @@ import {
   View,
   withAuthenticator,
 } from '@aws-amplify/ui-react';
-import { listNotes } from './graphql/queries';
+import { listTodos } from './graphql/queries';
 import {
-  createNote as createNoteMutation,
-  deleteNote as deleteNoteMutation,
+  createTodo as createNoteMutation,
+  deleteTodo as deleteNoteMutation,
 } from './graphql/mutations';
 
-function App({ signOut }) {
+const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
@@ -25,8 +25,8 @@ function App({ signOut }) {
   }, []);
 
   async function fetchNotes() {
-    const apiData = await API.graphql({ query: listNotes });
-    const notesFromAPI = apiData.data.listNotes.items;
+    const apiData = await API.graphql({ query: listTodos });
+    const notesFromAPI = apiData.data.listTodos.items;
     setNotes(notesFromAPI);
   }
 
@@ -102,6 +102,6 @@ function App({ signOut }) {
       <Button onClick={signOut}>Sign Out</Button>
     </View>
   );
-}
+};
 
 export default withAuthenticator(App);
