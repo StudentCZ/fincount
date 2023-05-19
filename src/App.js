@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import '@aws-amplify/ui-react/styles.css';
 import { API } from 'aws-amplify';
@@ -19,6 +19,10 @@ import {
 
 function App({ signOut }) {
   const [notes, setNotes] = useState([]);
+
+  useEffect(() => {
+    fetchNotes();
+  }, []);
   return (
     <View className='App'>
       <Card>
