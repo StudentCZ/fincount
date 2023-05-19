@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import '@aws-amplify/ui-react/styles.css';
 import { API } from 'aws-amplify';
@@ -18,6 +18,7 @@ import {
 } from './graphql/mutations';
 
 function App({ signOut }) {
+  const [notes, setNotes] = useState([]);
   return (
     <View className='App'>
       <Card>
