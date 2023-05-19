@@ -30,6 +30,21 @@ function App({ signOut }) {
     setNotes(notesFromAPI);
   }
 
+  async function createNote(event) {
+    event.preventDefault();
+    const form = new FormData(event.target);
+    const data = {
+      name: form.get('name'),
+      description: form.get('description'),
+    };
+    await API.graphql({
+      query: createNoteMutation,
+      variables: { input: data },
+    });
+    fetchNotes();
+    event.target.reset();
+  }
+
   return (
     <View className='App'>
       <Card>
