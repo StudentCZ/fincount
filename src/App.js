@@ -43,10 +43,13 @@ const App = ({ signOut }) => {
   async function createNote(event) {
     event.preventDefault();
     const form = new FormData(event.target);
+    const image = new FormData(event.target);
     const data = {
       name: form.get('name'),
       description: form.get('description'),
+      image: image.name,
     };
+    if (!!data.image) await Storage.put(data.name, image);
     await API.graphql({
       query: createNoteMutation,
       variables: { input: data },
