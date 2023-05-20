@@ -28,6 +28,15 @@ const App = ({ signOut }) => {
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listTodos });
     const notesFromAPI = apiData.data.listTodos.items;
+    await Promise.all(
+      notesFromAPI.map(async (note) => {
+        if (note.image) {
+          const url = await Storage.get(note.name);
+          note.image = url;
+        }
+        return note;
+      })
+    );
     setNotes(notesFromAPI);
   }
 
