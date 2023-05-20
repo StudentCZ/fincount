@@ -113,6 +113,7 @@ const App = ({ signOut }) => {
           </Flex>
         ))}
       </View>
+      <View name='image' as='input' type='file' style={{ alignSelf: 'end' }} />
       <Button onClick={signOut}>Sign Out</Button>
     </View>
   );
