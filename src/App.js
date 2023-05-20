@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import '@aws-amplify/ui-react/styles.css';
-import { API } from 'aws-amplify';
+import { API, Storage } from 'aws-amplify';
 import {
   Button,
   Flex,
   Heading,
+  Image,
   Text,
   TextField,
   View,
